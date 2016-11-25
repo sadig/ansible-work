@@ -1,0 +1,5 @@
+- hosts: localhost
+  connection: local
+  become: false
+  roles:
+    - create_lxd_containers
