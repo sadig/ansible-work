@@ -1,0 +1,11 @@
+- name: create ghost blog containers
+  hosts: localhost
+  connection: local
+  become: false
+  roles:
+    - create_lxd_containers
+
+- name: deploy ghost blog
+  hosts: containers
+  roles:
+    - ghost_blog
