@@ -1,0 +1,5 @@
+ghost:
+  app:
+    version: '0.11.3'
+    url: 'https://my.test.blog.tld'
+  install_into: '/blog/'

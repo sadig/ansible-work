@@ -1,0 +1,7 @@
+---
+- name: Create Ghost Blog Group
+  group: name=ghost gid=300 state=present system=yes
+
+- name: Create Ghost Blog User
+  user: name=ghost group=ghost home=/home/ghost_blog/ system=yes uid=300 state=present
+

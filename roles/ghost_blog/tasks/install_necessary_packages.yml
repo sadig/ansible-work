@@ -1,0 +1,11 @@
+---
+- name: update archive
+  apt: update_cache=yes
+
+- name: install packages
+  apt: name={{item}} state=present
+  with_items:
+    - unzip
+    - nodejs
+    - nodejs-legacy
+    - npm

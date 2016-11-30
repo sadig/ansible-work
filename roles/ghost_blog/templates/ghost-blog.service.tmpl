@@ -1,0 +1,16 @@
+[Unit]
+Description=Ghost Blog Service
+After=network.target
+
+[Service]
+User=ghost
+Group=ghost
+WorkingDirectory=/home/ghost/{{ghost.install_into}}
+ExecStart=/usr/bin/npm start --production
+ExecStop=/usr/bin/npm stop --production
+Type=simple
+Restart=always
+SyslogIdentifier=Ghost
+
+[Install]
+WantedBy=multi-user.target

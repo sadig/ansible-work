@@ -1,0 +1,15 @@
+---
+- name: install necessary node modules
+  command: "npm install --production chdir=/home/ghost/{{ghost.install_into}}"
+
+- name: install ghost blog config.js
+  template: "src=config.js.tmpl dest=/home/ghost/{{ghost.install_into}}/config.js owner=ghost group=ghost mode=0644"
+
+- name: change group and owner on install directory
+  file: path=/home/ghost/{{ghost.install_into}} owner=ghost group=ghost recurse=yes state=directory
+
+- name: install systemd service
+  template: src=ghost-blog.service.tmpl dest=/etc/systemd/system/ghost-blog.service owner=root group=root mode=0644
+  
+- name: start ghost service
+  service: name=ghost-blog state=started

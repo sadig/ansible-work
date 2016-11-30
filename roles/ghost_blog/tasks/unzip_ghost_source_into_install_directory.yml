@@ -1,0 +1,20 @@
+---
+- name: Check if install directory exists
+  stat: "path=/home/ghost/{{ghost.install_into}}/" 
+  register: install_directory_exists  
+  tags:
+    - create
+
+- name: Create Install directory
+  file: "path=/home/ghost/{{ghost.install_into}}/ state=directory"
+  when: install_directory_exists.stat.exists == false
+  tags:
+    - create
+
+- name: Unzip source into install directory
+  unarchive: "remote_src=True src=/root/ghost-{{ghost.app.version}}.zip dest=/home/ghost/{{ghost.install_into}}"
+  tags:
+    - create
+    - update
+
+  

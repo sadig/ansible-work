@@ -1,0 +1,22 @@
+---
+- include: tasks/install_necessary_packages.yml
+  tags:
+    - create
+    - update
+- include: tasks/create_ghost_blog_service_user_and_group.yml
+  tags:
+    - create
+- include: tasks/download_ghost_release_and_copy_it_to_container.yml
+  tags:
+    - create
+    - update
+
+- include: tasks/unzip_ghost_source_into_install_directory.yml
+  tags:
+    - create
+    - update
+
+- include: tasks/install_ghost_blog.yml
+  tags:
+    - create
+    - update

@@ -1,0 +1,13 @@
+---
+- name: Check if Ghost Blog Release file is already there
+  stat: "path=/root/ghost-{{ghost.app.version}}.zip" 
+  failed_when: ghost is not defined and ghost.app is not defined and ghost.app.version is not defined  
+  register: ghost_file
+
+- name: Download Ghost Blog Release and store it locally
+  become: False
+  connection: local
+  get_url: "url=https://ghost.org/zip/ghost-{{ghost.app.version}}.zip dest=/root/ghost-{{ghost.app.version}}.zip"
+  failed_when: ghost is not defined and ghost.app is not defined and ghost.app.version is not defined
+  when: ghost_file.stat.exists == False
+  changed_when: false
