@@ -3,7 +3,4 @@ localhost
 
 [containers]
 blog-01 ansible_connection=lxd
-blog-02 ansible_connection=lxd
-blog-03 ansible_connection=lxd
-blog-04 ansible_connection=lxd
-blog-05 ansible_connection=lxd
+# blog-02 ansible_connection=lxd
